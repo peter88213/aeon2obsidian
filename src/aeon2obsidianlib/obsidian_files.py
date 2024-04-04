@@ -47,6 +47,8 @@ class ObsidianFiles:
             event: Event instance.
         """
         lines = []
+
+        #--- Event properties.
         for propertyId in event.values:
             propertyName = self.timeline.properties[propertyId]
             lines.append(f'### {propertyName}')
@@ -54,16 +56,33 @@ class ObsidianFiles:
             if eventValue and type(eventValue) == str:
                 lines.append(self._to_markdown(eventValue))
 
+        #--- Links to entities.
         for roleId in event.relationships:
             roleName = self.timeline.roles[roleId]
             entityId = event.relationships[roleId]
             entityName = self.timeline.entities[entityId].name
             link = self._strip_title(entityName)
             lines.append(f'- {roleName}: [[{link}]]')
+
+        #--- Tags.
         for tag in event.tags:
             lines.append(f"#{tag.replace(' ', '_')}")
+
+        #--- Date and time.
         lines.append(event.date)
         lines.append(event.time)
+
+        #--- Duration.
+        durationList = []
+        if event.lastsDays:
+            durationList.append(f'{event.lastsDays} days')
+        if event.lastsHours:
+            durationList.append(f'{event.lastsHours} hours')
+        if event.lastsMinutes:
+            durationList.append(f'{event.lastsMinutes} minutes')
+        if durationList:
+            durationStr = ', '.join(durationList)
+            lines.append(durationStr)
         return '\n\n'.join(lines)
 
     def _build_index(self):
