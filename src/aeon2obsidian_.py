@@ -14,6 +14,7 @@ import os
 import sys
 from aeon2obsidianlib.aeon2_file import Aeon2File
 from aeon2obsidianlib.obsidian_files import ObsidianFiles
+from aeon2obsidianlib.timeline import Timeline
 
 
 def main(sourcePath):
@@ -24,9 +25,9 @@ def main(sourcePath):
     """
 
     # Create an Aeon 2 file object and read the data.
-    aeon3File = Aeon2File(sourcePath)
-    print(aeon3File.read())
-    return
+    aeon2File = Aeon2File(sourcePath)
+    aeon2File.timeline = Timeline()
+    print(aeon2File.read())
 
     # Define the output directory.
     aeonDir, aeonFilename = os.path.split(sourcePath)
@@ -35,11 +36,7 @@ def main(sourcePath):
 
     # Create an Obsidian fileset object and write the data.
     obsidianFiles = ObsidianFiles(obsidianFolder)
-    obsidianFiles.items = aeon3File.items
-    obsidianFiles.labels = aeon3File.labels
-    obsidianFiles.itemIndex = aeon3File.itemIndex
-    obsidianFiles.relationships = aeon3File.relationships
-    obsidianFiles.narrative = aeon3File.narrative
+    obsidianFiles.timeline = aeon2File.timeline
     print(obsidianFiles.write())
 
 

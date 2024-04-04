@@ -14,11 +14,7 @@ class ObsidianFiles:
     def __init__(self, folderPath):
         """Set the Obsidian folder."""
         self.folderPath = folderPath
-        self.items = {}
-        self.labels = {}
-        self.itemIndex = {}
-        self.relationships = {}
-        self.narrative = {}
+        self.timeline = None
 
     def write(self):
         """Create a set of Markdown files in the Obsidian folder.
