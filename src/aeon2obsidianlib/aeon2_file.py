@@ -37,6 +37,7 @@ class Aeon2File:
             uid = jsonType['guid']
             name = jsonType['name']
             self.timeline.types[uid] = name
+            self.timeline.entitiesByType[uid] = []
             for jsonRole in jsonType['roles']:
                 uid = jsonRole['guid']
                 name = jsonRole['name']
@@ -53,6 +54,7 @@ class Aeon2File:
             uid = jsonEntity['guid']
             self.timeline.entities[uid] = self.timeline.entityClass()
             self.timeline.entities[uid].read(jsonEntity)
+            self.timeline.entitiesByType[jsonEntity['entityType']].append(uid)
 
         #--- Read events.
         for jsonEvent in jsonData['events']:

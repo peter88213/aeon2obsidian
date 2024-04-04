@@ -31,3 +31,5 @@ class Timeline:
         self.events: dict[str, Event] = {}
         # key: ID, value: eventClass instance
 
+        self.entitiesByType: dict[str, list[str]] = {}
+        # key: type ID, value: list of entity IDs
