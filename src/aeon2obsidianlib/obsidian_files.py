@@ -59,10 +59,10 @@ class ObsidianFiles:
         #--- Links to entities.
         for roleId in event.relationships:
             roleName = self.timeline.roles[roleId]
-            entityId = event.relationships[roleId]
-            entityName = self.timeline.entities[entityId].name
-            link = self._strip_title(entityName)
-            lines.append(f'- {roleName}: [[{link}]]')
+            for entityId in event.relationships[roleId]:
+                entityName = self.timeline.entities[entityId].name
+                link = self._strip_title(entityName)
+                lines.append(f'- {roleName}: [[{link}]]')
 
         #--- Tags.
         for tag in event.tags:

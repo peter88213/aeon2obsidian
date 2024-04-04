@@ -4,6 +4,11 @@
 
 ## Changelog
 
+
+### v0.2.1
+
+- Fix a bug where only the first relationship is put on the page.
+
 ### v0.2.0 Alpha release
 
 - Add event duration.

@@ -16,8 +16,8 @@ class Event:
         self.title: str = None
         # single line text
 
-        self.relationships: dict[str, str] = None
-        # key: role ID, value: entity ID
+        self.relationships: dict[str, list[str]] = None
+        # key: role ID, value: list of entity IDs
 
         self.values: dict[str, str] = None
         # key: property ID, value: text
@@ -101,9 +101,11 @@ class Event:
         for relationship in jsonEvent['relationships']:
             role = relationship.get('role', None)
             if role:
+                if not role in self.relationships:
+                    self.relationships[role] = []
                 entity = relationship.get('entity', None)
                 if entity:
-                    self.relationships[role] = entity
+                    self.relationships[role].append(entity)
 
     def read_tags(self, jsonEvent: dict):
         """Set tags from Aeon 2 JSON event list."""
