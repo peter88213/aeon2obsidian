@@ -17,6 +17,8 @@ project and generates a set of Markdown documents.
 
 - [Python](https://www.python.org/) version 3.6+.
 
+**Aeon Timeline 3 users:** A variant for Aeon Timeline 3 can be found [here](https://peter88213.github.io/aeon3obsidian/).
+
 ## Download and install {#download}
 
 [Download the latest release (version 0.1.0)](https://raw.githubusercontent.com/peter88213/aeon2obsidian/main/dist/aeon2obsidian_v0.1.0.zip)
