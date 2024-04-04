@@ -31,11 +31,11 @@ project and generates a set of Markdown documents.
 aeon2obsidian.py Sourcefile
 
 positional arguments:
-  Sourcefile  The path of the .aeon or .csv file.
+  Sourcefile  The path of the .aeonzip file.
 
 ```
 
-You can also drag an *.aeon* file and drop it on the *aeon2obsidian.py* icon. 
+You can also drag an *.aeonzip* file and drop it on the *aeon2obsidian.py* icon. 
 
 The created Markdown files are placed in a subfolder, named after the *aeon* project.
 

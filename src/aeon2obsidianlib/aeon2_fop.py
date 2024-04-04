@@ -13,7 +13,7 @@ def open_timeline(filePath):
     """Unzip the project file and read 'timeline.json'.
 
     Positional arguments:
-        filePath -- Path of the .aeon project file to read.
+        filePath -- Path of the .aeonzip project file to read.
         
     Return a Python object containing the timeline structure.
     Raise the "Error" exception in case of error. 

@@ -15,7 +15,7 @@ class Aeon2File:
         self.filePath = filePath
         self.timeline: Timeline = None
 
-    def read(self):
+    def read(self) -> str:
         """Read the Aeon 2 project file.
         
         Return a success message.
@@ -57,9 +57,18 @@ class Aeon2File:
             self.timeline.entitiesByType[jsonEntity['entityType']].append(uid)
 
         #--- Read events.
+        eventTitles = {}
         for jsonEvent in jsonData['events']:
             uid = jsonEvent['guid']
             self.timeline.events[uid] = self.timeline.eventClass()
             self.timeline.events[uid].read(jsonEvent, tplDateGuid)
+            title = self.timeline.events[uid].title
+            if title in eventTitles:
+                print(f'Multiple event title: {title}')
+                number = eventTitles[title] + 1
+                eventTitles[title] = number
+                self.timeline.events[uid].title = f'{title}({number})'
+            else:
+                eventTitles[title] = 0
 
         return 'Aeon 2 file successfully read.'

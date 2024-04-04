@@ -4,7 +4,7 @@
 usage: aeon2obsidian.py Sourcefile
 
 positional arguments:
-  Sourcefile  The path of the .aeon file.
+  Sourcefile  The path of the .aeonzip file.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/aeon2obsidian
@@ -18,10 +18,10 @@ from aeon2obsidianlib.timeline import Timeline
 
 
 def main(sourcePath):
-    """Convert an .aeon source file to a set of Markdown files.
+    """Convert an .aeonzip source file to a set of Markdown files.
     
     Positional arguments:
-        sourcePath -- str: The path of the .aeon file.
+        sourcePath -- str: The path of the .aeonzip file.
     """
 
     # Create an Aeon 2 file object and read the data.

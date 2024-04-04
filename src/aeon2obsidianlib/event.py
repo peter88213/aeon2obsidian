@@ -22,6 +22,8 @@ class Event:
         self.values: dict[str, str] = None
         # key: property ID, value: text
 
+        self.tags: list[str] = None
+
         self.date: str = None
         # ISO date string
 
@@ -38,6 +40,7 @@ class Event:
         self.read_date(jsonEvent, tplDateGuid)
         self.read_relationships(jsonEvent)
         self.read_values(jsonEvent)
+        self.read_tags(jsonEvent)
 
     def read_date(self, jsonEvent: dict, tplDateGuid: str):
         """Set date/time/duration from Aeon 2 JSON event dictionary."""
@@ -102,9 +105,15 @@ class Event:
                 if entity:
                     self.relationships[role] = entity
 
+    def read_tags(self, jsonEvent: dict):
+        """Set tags from Aeon 2 JSON event list."""
+        self.tags = []
+        for tag in jsonEvent['tags']:
+            self.tags.append(tag.strip())
+
     def read_title(self, jsonEvent: dict):
         """Set title from Aeon 2 JSON event."""
-        self.title = jsonEvent['title']
+        self.title = jsonEvent['title'].strip()
 
     def read_values(self, jsonEvent: dict):
         """Set values from Aeon 2 JSON event list."""
@@ -114,5 +123,5 @@ class Event:
             if eventProperty:
                 val = eventValue.get('value', None)
                 if val:
-                    self.values[eventProperty] = val
+                    self.values[eventProperty] = val.strip()
 
